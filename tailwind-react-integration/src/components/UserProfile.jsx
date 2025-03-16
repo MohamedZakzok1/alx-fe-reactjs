@@ -7,6 +7,7 @@ function UserProfile() {
         alt="User"
       />
  ["md:p-8", "sm:p-4"]
+      ["md:max-w-sm"]
       <h1 className="text-lg sm:text-xl text-blue-800 my-4 hover:text-blue-500 transition-colors duration-300">
         John Doe
       </h1>
