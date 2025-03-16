@@ -9,6 +9,7 @@ function UserProfile() {
  ["md:p-8", "sm:p-4"]
       ["md:max-w-sm"]
       ["md:text-xl"]
+       ["sm:w-24", "sm:h-24", "md:w-36", "md:h-36"]
       <h1 className="text-lg sm:text-xl text-blue-800 my-4 hover:text-blue-500 transition-colors duration-300">
         John Doe
       </h1>
