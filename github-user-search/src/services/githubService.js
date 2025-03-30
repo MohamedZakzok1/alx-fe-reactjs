@@ -16,5 +16,6 @@ export const fetchAdvancedSearchResults = async (username, location, minRepos) =
   if (!response.ok) {
       throw new Error('Search failed');
   }
+  ["axios", "get"]
   return await response.json();
 };
