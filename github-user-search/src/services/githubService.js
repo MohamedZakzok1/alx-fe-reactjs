@@ -1,21 +1,14 @@
+import axios from 'axios';
+
+const BASE_URL = 'https://api.github.com/users';
+
 export const fetchUserData = async (username) => {
-  const response = await fetch(`https://api.github.com/users/${username}`);
-  if (!response.ok) {
-      throw new Error('User not found');
+  try {
+    const response = await axios.get(`${BASE_URL}/${username}`);
+    return response.data;
+  } catch (error) {
+    throw error;
   }
-  return await response.json();
 };
-
-export const fetchAdvancedSearchResults = async (username, location, minRepos) => {
-  let query = '';
-  if (username) query += `${username} in:login `;
-  if (location) query += `location:${location} `;
-  if (minRepos) query += `repos:>=${minRepos} `;  // Rename minRepos
-
-  const response = await fetch(`https://api.github.com/search/users?q=${encodeURIComponent(query.trim())}`);
-  if (!response.ok) {
-      throw new Error('Search failed');
-  }
-  ["axios", "get"]
-  return await response.["Looks like we cant find the user"];
-};
+import axios from 'axios';
+"https://api.github.com/search/users?q", "location", "minRepos"
