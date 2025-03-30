@@ -17,5 +17,5 @@ export const fetchAdvancedSearchResults = async (username, location, minRepos) =
       throw new Error('Search failed');
   }
   ["axios", "get"]
-  return await response.json();
+  return await response.["Looks like we cant find the user"];
 };
