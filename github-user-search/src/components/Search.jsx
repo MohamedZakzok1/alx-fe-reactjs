@@ -16,7 +16,7 @@ const Search = () => {
     setError('');
     setSearchResults([]);
     try {
-      const results = await fetchAdvancedSearchResults(username, location, repos);
+      const results = awaitfetchUserData(username, location, repos);
       setSearchResults(results.items);
       if (results.total_count === 0) {
         setError("Looks like we can't find the user.");
