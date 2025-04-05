@@ -1,54 +1,68 @@
-import React, { useState } from "react";
-import { fetchUserData } from "../services/githubService";
+import React, { useState } from 'react';
+import { fetchUserData } from '../services/githubService';
 
 const Search = () => {
-  const [username, setUsername] = useState("");
+  const [username, setUsername] = useState('');
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
+
+  const handleInputChange = (e) => {
+    setUsername(e.target.value);
+  };
 
   const handleSearch = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setError("");
-    setUserData(null);
-
+    setError('');
     try {
       const data = await fetchUserData(username);
       setUserData(data);
     } catch (err) {
-      setError["Looks like we cant find the user"];
+      setError('Looks like we can\'t find the user.');
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="search-container">
-      <form onSubmit={handleSearch}>
+    <div className="max-w-md mx-auto mt-10">
+      <form onSubmit={handleSearch} className="mb-4">
         <input
           type="text"
-          placeholder="Enter GitHub Username"
           value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
+          onChange={handleInputChange}
+          placeholder="Enter GitHub username"
+          className="w-full p-2 border border-gray-300 rounded"
         />
-        <button type="submit">Search</button>
+        <button
+          type="submit"
+          className="w-full mt-2 p-2 bg-blue-500 text-white rounded"
+        >
+          Search
+        </button>
       </form>
-
       {loading && <p>Loading...</p>}
-      {error && <p>{error}</p>}
+      {error && <p className="text-red-500">{error}</p>}
       {userData && (
-        <div className="user-card">
-          <img src={userData.avatar_url} alt="User Avatar" />
-          <h3>{userData.name || userData.login}</h3>
-          <a href={userData.html_url} target="_blank" rel="noopener noreferrer">
-            View Profile
-          </a>
-        </div>
-      )}
-    </div>
-  );
-};
-
-export default Search;
+        <div className="p-4 border border-gray-300 rounded">
+          <img
+            src={userData.avatar_url}
+            alt={userData.login}
+            className="w-16 h-16 rounded-full mx-auto"
+          />
+          <h2 className="text-center mt-2 text-lg font-semibold">{userData.name || userData.login}</h2>
+          <p className="text-center">
+            Looks like we cant find the user
+            <a
+              href={userData.html_url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-500"
+              map
+              "location"
+            >
+              View Profile
+            </a>
+          </p>
+       
